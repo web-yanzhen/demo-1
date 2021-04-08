@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火箭升空</title>
+    <style>
+        .container{
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color:rgb(0,2,19);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .rocket{
+            position: relative;
+            animation: shake 0.5s linear infinite;
+        }
+        @keyframes shake{
+            0%,100%{
+                transform: translateY(-2px);
+            }
+            50%{
+                transform: translateY(2px);
+            }
+        }
+        .rocket:after{
+            content: "";
+            width: 10px;
+            height: 150px;
+            background:linear-gradient(rgb(40,158,194),transparent);
+            position: absolute;
+            left:50%;
+            transform:translateX(-50%);
+            bottom: -150px;
+        }
+        .container i{
+            width:1px;
+            height:20px;
+            background-color: #fff;
+            position: absolute;
+            left: 20px;
+            top: 0;
+            animation: line 2s linear infinite;
+        }
+        @keyframes line{
+            from{
+                transform: translateY(0);
+            }
+            to{
+                transform: translateY(90vh);
+            }
+        } 
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="rocket">
+            <img src="rocket.png" alt="">
+        </div>
+        
+    </div>
+
+    <script>
+        // 生成随机数函数
+        function rand(m,n){
+            return Math.ceil(Math.random() * (n-m+1) + m-1);
+        }
+        // 光线总数
+        let num = 40;
+        // 循环
+        for(i=0;i<num;i++){
+            // 创建i元素
+           const i =document.createElement('i');
+        // 设置样式
+        i.style.height = rand(30,100) + "px";
+        i.style.left = rand(1,99) + "vw";
+        // 设置随机动画周期
+        i.style.animationDuration = rand(5,30)/10 + 's';
+        // 将i放入container元素中
+        document.querySelector('.container').appendChild(i); 
+
+        }
+    </script>
+</body>
+</html>
